@@ -12,51 +12,48 @@ xmlns:context="http://www.springframework.org/schema/context"
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">	
 	
-		<context:property-placeholder />
-	<context:component-scan base-package="org.partsystem.service" />
-	<mvc:annotation-driven />
+ 	<context:annotation-config />
+	<context:component-scan base-package="org.partsystem.service" /> 
 	
-		<!-- enable use-expressions -->
-	<http auto-config="true" use-expressions="true">
+	
+<!-- 	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/index*" access="hasAnyRole('ROLE_USER,ROLE_ANONYMOUS')" />
+		<intercept-url pattern="/add*" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/delete/*" access="hasRole('ROLE_ADMIN')" />
+ 
+	
+		<access-denied-handler error-page="/error403.jsp" />
+		
+		<form-login login-page="/login.jsp" default-target-url="/index"
+			authentication-failure-url="/login.jsp?error=true" 
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
+		<logout logout-url="/logout" logout-success-url="/index" />
+		<anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
+		<csrf />
+	</http> -->
+	
+	
+	<http access-denied-page="/error403.jsp">
 		<intercept-url pattern="/index*" access="ROLE_USER,ROLE_ANONYMOUS" />
 		<intercept-url pattern="/add*" access="ROLE_USER" />
 		<intercept-url pattern="/delete/*" access="ROLE_ADMIN" />
- 
-		<!-- access denied page -->
-<!-- 		<access-denied-handler error-page="/403" /> -->
-		<access-denied-handler error-page="/error403.jsp" />
-<!-- 		<form-login 
-		    login-page="/login" 
-		    default-target-url="/welcome"
-			authentication-failure-url="/login?error" 
-			username-parameter="username"
-			password-parameter="password" /> -->
 		<form-login login-page="/login.jsp" default-target-url="/index"
-			authentication-failure-url="/login.jsp?error=true" />	
-		<!-- <logout logout-success-url="/login?logout" /> -->
+			authentication-failure-url="/login.jsp?error=true" />
 		<logout logout-url="/logout" logout-success-url="/index" />
-				<anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
-<!-- 		<remember-me /> -->
-		<!-- enable csrf protection -->
-		<csrf />
+		
+		<anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
+		<remember-me />
 	</http>
  
-	<authentication-manager>
+  	<authentication-manager>
 		<authentication-provider user-service-ref="userService" >
-<!-- 			<password-encoder hash="bcrypt" />     -->
+			<password-encoder hash="plaintext" />    
 		</authentication-provider>
 	</authentication-manager>
-	
+	  
 
-<!-- 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER" />
-				<user name="user1" password="1111" authorities="ROLE_USER" />
-				<user name="user2" password="2222" disabled="true" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
-	</authentication-manager> -->
 	
 	
 </beans:beans>
