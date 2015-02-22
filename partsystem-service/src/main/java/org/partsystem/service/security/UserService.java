@@ -15,6 +15,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Krasova Olga
+ * Implement @UserDetailService. 
+ * UserDetailsService interface is used in order to lookup the username, 
+ * password and GrantedAuthorities for any given user. 
+ */
 @Service
 public class UserService implements UserDetailsService {
 	
