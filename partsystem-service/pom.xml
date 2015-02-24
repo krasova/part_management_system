@@ -17,20 +17,11 @@
 			<artifactId>partsystem-dao</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>3.2.5.RELEASE</version>
-		</dependency>		
- 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>3.2.5.RELEASE</version>
-		</dependency>
+		<!-- Contains core authentication and access-contol classes and interfaces, remoting support and basic provisioning APIs.  -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>3.2.5.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency> 
 
 	</dependencies>
